@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { observer } from 'mobx-react';
+import { AuthLoginStore } from "../../stores/authLogin.ts";
 
-const Login = () => {
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const store = new AuthLoginStore();
+
+const Login = observer(() => {
 
   return (
     <>
@@ -14,24 +14,23 @@ const Login = () => {
         <input
           type={"text"}
           placeholder={"Phone"}
-          value={phone}
-          onInput={() => setPhone(event.target.value) }
+          onKeyUp={() => store.phone = event.target.value}
         />
         <input
           type={"email"}
           placeholder={"Email"}
-          value={email}
-          onInput={() => setEmail(event.target.value) }
+          onKeyUp={() => store.email = event.target.value}
         />
         <input
           type={"password"}
           placeholder={"Password"}
-          value={password}
-          onInput={() => setPassword(event.target.value) }
+          onKeyUp={() => store.password = event.target.value}
         />
+        <span>Phone: {store.phone}</span>
+        <span>Email: {store.email}</span>
+        <span>Password: {store.password}</span>
       </form>
     </>
   )
-}
-
+})
 export default Login;
