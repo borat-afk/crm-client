@@ -25,7 +25,7 @@ const Registration = observer(() => {
   return (
     <div className={'w-full h-screen bg-app-bg bg-cover flex justify-center items-center'}>
       <form
-        className={'flex flex-col w-96 h-[]162px] m-auto items-center bg-white'}
+        className={'flex flex-col w-96 m-auto items-center bg-white'}
         onSubmit={submit}
       >
         <div className={'w-full h-16 flex justify-center items-center bg-secondary font-bold mb-2'}>
