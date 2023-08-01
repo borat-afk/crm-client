@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react';
-import { AuthLoginStore } from "../../stores/authLogin.ts";
+import { AuthLoginStore } from '../../stores/authLogin.ts';
+import { ChangeEvent } from 'react';
 
 const store = new AuthLoginStore();
 
@@ -14,17 +15,17 @@ const Login = observer(() => {
         <input
           type={"text"}
           placeholder={"Phone"}
-          onKeyUp={() => store.phone = event.target.value}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => store.phone = event.target.value}
         />
         <input
           type={"email"}
           placeholder={"Email"}
-          onKeyUp={() => store.email = event.target.value}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => store.email = event.target.value}
         />
         <input
           type={"password"}
           placeholder={"Password"}
-          onKeyUp={() => store.password = event.target.value}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => store.password = event.target.value}
         />
         <span>Phone: {store.phone}</span>
         <span>Email: {store.email}</span>
