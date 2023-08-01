@@ -23,41 +23,44 @@ const Registration = observer(() => {
   }
 
   return (
-    <>
+    <div className={'w-full h-screen bg-app-bg bg-cover flex justify-center items-center'}>
       <form
-        className={'flex flex-col w-1/2 m-auto border-2 border-amber-600 rounded bg-amber-200'}
+        className={'flex flex-col w-96 h-[]162px] m-auto items-center bg-white'}
         onSubmit={submit}
       >
-        <h2 className={'text-blue-800 font-black text-2xl'}>
-          Registration
-        </h2>
+        <div className={'w-full h-16 flex justify-center items-center bg-secondary font-bold mb-2'}>
+          <h2 className={'text-primary text-2xl'}>
+            Registration
+          </h2>
+        </div>
+        <p className={'text-primary text-sm my-4'}>Welcome, introduce your credentials to begin.</p>
         <input
           type={'email'}
           placeholder={'Email'}
-          className={'w-full py-4 border-amber-600'}
+          className={'w-80 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
           onChange={(event: ChangeEvent<HTMLInputElement>) => store.setEmail(event.target.value)}
         />
         <input
           type={'text'}
           placeholder={'Phone'}
-          className={'w-full py-4 border-amber-600'}
+          className={'w-80 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
           onChange={(event: ChangeEvent<HTMLInputElement>) => store.setPhone(event.target.value)}
         />
         <input
           type={'password'}
           placeholder={'Password'}
-          className={'w-full py-4 border-amber-600'}
+          className={'w-80 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
           onChange={(event: ChangeEvent<HTMLInputElement>) => store.setPassword(event.target.value)}
         />
 
         <button
           type={'submit'}
-          className={'w-[220px h-[60px] flex items-center justify-center bg-blue-800 text-white text-2xl'}
+          className={'w-80 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2'}
         >
           Registration
         </button>
       </form>
-    </>
+    </div>
   )
 });
 
