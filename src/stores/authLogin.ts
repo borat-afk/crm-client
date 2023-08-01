@@ -11,30 +11,39 @@ export class AuthLoginStore {
   constructor() {
     makeObservable(this, {
       email: observable,
-      phone: observable,
       password: observable,
       isPending: observable,
+      setEmail: action,
+      setPassword: action,
       handleLogin: action,
     })
+  }
+
+  setEmail(value: string) {
+    this.email = value;
+  }
+
+  setPassword(value: string) {
+    this.password = value;
   }
 
   async handleLogin() {
     if (!this.email || !this.password) return;
 
     try {
-      const body = {
+      const data = {
         email: this.email,
         password: this.password,
       }
 
-      const res = await api.post('/auth/login', body);
+      const res = await api.post('/auth/login', data);
 
       if (res.data.token) {
         localStorage.setItem('access_token', res.data.token);
         axiosInstance.defaults.headers['Authorization'] = `Bearer ${res.data.token}`
       }
     } catch (e) {
-      throw new Error()
+      return
     }
   }
 }

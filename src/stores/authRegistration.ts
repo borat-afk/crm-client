@@ -2,6 +2,12 @@ import { makeObservable, observable, action } from 'mobx';
 import api from '../services/axiosInstance.ts';
 import axiosInstance from "../services/axiosInstance.ts";
 
+interface IReqPayload {
+  email: string,
+  phone?: string,
+  password: string
+}
+
 export class AuthRegistrationStore {
   email: string = '';
   phone: string = '';
@@ -16,22 +22,41 @@ export class AuthRegistrationStore {
       password: observable,
       isPending: observable,
       apiKey: observable,
-      handleRegistration: action,
+      setEmail: action,
+      setPhone: action,
+      setPassword: action,
+      setApiKey: action,
     })
+  }
+
+  setEmail(value: string) {
+    this.email = value
+  }
+
+  setPhone(value: string) {
+    this.phone = value
+  }
+
+  setPassword(value: string) {
+    this.password = value
+  }
+
+  setApiKey(value: string) {
+    this.apiKey = value
   }
 
   async handleRegistration() {
     if (!this.email || !this.password) return;
 
     try {
-      const body: { email: string, phone?:string, password: string } = {
+      const data: IReqPayload = {
         email: this.email,
         password: this.password,
       }
 
-      if (this.phone) body.phone = this.phone;
+      if (this.phone) data.phone = this.phone;
 
-      const res = await api.post('/auth/registration', body);
+      const res = await api.post('/auth/registration', data);
 
       if (res.data.token) {
         this.setToken(res.data.token);
@@ -45,7 +70,7 @@ export class AuthRegistrationStore {
     if (!this.email || !this.password || !this.apiKey) return;
 
     try {
-      const body: { email: string, phone?:string, password: string } = {
+      const body: IReqPayload = {
         email: this.email,
         password: this.password,
       }

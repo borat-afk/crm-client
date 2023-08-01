@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 const accessToken: string | null = localStorage.getItem('access_token');
 
 const axiosParams = {
-  baseURL: import.meta.env.REACT_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   headers: <{
     'Content-Type': string,
     'Accept': string,
