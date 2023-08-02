@@ -50,9 +50,7 @@ const Registration = observer(() => {
           onSubmit={submit}
         >
           <div className={'registration__form-header'}>
-            <h2>
-              Registration
-            </h2>
+            <h2>Registration</h2>
           </div>
 
           <p className={'registration__form-des'}>
