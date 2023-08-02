@@ -1,0 +1,35 @@
+.registration-wrp {
+    @apply w-full h-screen bg-app-bg bg-cover;
+}
+
+.registration__form-wrp {
+    @apply w-full flex h-[calc(100vh-64px)] justify-center items-center bg-blue-opacity;
+}
+
+.registration__form {
+    @apply flex flex-col w-[480px] m-auto items-center bg-white;
+}
+
+.registration__form-header {
+    @apply w-full h-16 flex justify-center items-center bg-secondary font-bold mb-2 text-primary text-2xl;
+}
+
+.registration__form-des {
+    @apply text-primary text-sm my-4;
+}
+
+.registration__form-mode-btn-wrp {
+    @apply w-96 mx-auto my-2 flex items-center justify-center;
+}
+
+.registration__form-mode-btn {
+    @apply text-primary font-extralight text-lg mx-4 hover:text-light-blue;
+}
+
+.registration__form-mode-btn--active {
+    @apply text-primary font-bold text-lg mx-4;
+}
+
+.registration__form-btn {
+    @apply w-96 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2 hover:bg-light-blue active:bg-light-blue;
+}

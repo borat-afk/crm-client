@@ -1,0 +1,23 @@
+.login-wrp {
+    @apply w-full h-screen bg-app-bg bg-cover;
+}
+
+.login__form-wrp {
+    @apply w-full flex h-[calc(100vh-64px)] justify-center items-center bg-blue-opacity;
+}
+
+.login__form {
+    @apply flex flex-col w-[480px] m-auto items-center bg-white;
+}
+
+.login__form-header {
+    @apply w-full h-16 flex justify-center items-center bg-secondary font-bold mb-2 text-primary text-2xl;
+}
+
+.login__form-des {
+    @apply text-primary text-sm my-4;
+}
+
+.login__form-btn {
+    @apply w-96 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2 hover:bg-light-blue active:bg-light-blue;
+}

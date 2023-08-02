@@ -5,6 +5,7 @@ import { useState } from 'react';
 import validator from 'validator';
 import AuthHeader from '../AuthHeader';
 import toast from 'react-hot-toast';
+import './style.css';
 
 const store = new AuthRegistrationStore();
 
@@ -40,32 +41,35 @@ const Registration = observer(() => {
   }
 
   return (
-    <div className={'w-full h-screen bg-app-bg bg-cover'}>
+    <div className={'registration-wrp'}>
       <AuthHeader />
 
-      <div className={'w-full flex h-[calc(100vh-64px)] justify-center items-center bg-blue-opacity'}>
+      <div className={'registration__form-wrp'}>
         <form
           className={'flex flex-col w-[480px] m-auto items-center bg-white'}
           onSubmit={submit}
         >
-          <div className={'w-full h-16 flex justify-center items-center bg-secondary font-bold mb-2'}>
-            <h2 className={'text-primary text-2xl'}>
+          <div className={'registration__form-header'}>
+            <h2>
               Registration
             </h2>
           </div>
-          <p className={'text-primary text-sm my-4'}>Welcome, introduce your credentials to begin.</p>
 
-          <div className={'w-96 mx-auto my-2 flex items-center justify-center'}>
+          <p className={'registration__form-des'}>
+            Welcome, introduce your credentials to begin.
+          </p>
+
+          <div className={'registration__form-mode-btn-wrp'}>
             <button
               type={'button'}
-              className={isAdminReg ? 'text-primary font-extralight text-lg mx-4 hover:text-light-blue' : 'text-primary font-bold text-lg mx-4'}
+              className={isAdminReg ? 'registration__form-mode-btn' : 'registration__form-mode-btn--active'}
               onClick={() => setIsAdminReg(false)}
             >
               User
             </button>
             <button
               type={'button'}
-              className={!isAdminReg ? 'text-primary font-extralight text-lg mx-4 hover:text-light-blue' : 'text-primary font-bold text-lg mx-4'}
+              className={!isAdminReg ? 'registration__form-mode-btn' : 'registration__form-mode-btn--active'}
               onClick={() => setIsAdminReg(true)}
             >
               Admin
@@ -75,33 +79,33 @@ const Registration = observer(() => {
           <input
             type={'email'}
             placeholder={'Email'}
-            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
+            className={'app-input'}
             onChange={(event: ChangeEvent<HTMLInputElement>) => store.setEmail(event.target.value)}
           />
           <input
             type={'text'}
             placeholder={'Phone'}
-            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
+            className={'app-input'}
             onChange={(event: ChangeEvent<HTMLInputElement>) => store.setPhone(event.target.value)}
           />
           <input
             type={'password'}
             placeholder={'Password'}
-            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
+            className={'app-input'}
             onChange={(event: ChangeEvent<HTMLInputElement>) => store.setPassword(event.target.value)}
           />
           {isAdminReg &&
             <input
               type={'text'}
               placeholder={'Api-Key'}
-              className={'w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
+              className={'app-input'}
               onChange={(event: ChangeEvent<HTMLInputElement>) => store.setApiKey(event.target.value)}
             />
           }
 
           <button
             type={'submit'}
-            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2 hover:bg-light-blue active:bg-light-blue'}
+            className={'registration__form-btn'}
           >
             Registration
           </button>
