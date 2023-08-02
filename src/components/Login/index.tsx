@@ -1,19 +1,28 @@
 import { observer } from 'mobx-react';
 import { AuthLoginStore } from '../../stores/authLogin.ts';
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import validator from 'validator';
 import AuthHeader from '../AuthHeader';
+import toast from 'react-hot-toast';
 
 const store = new AuthLoginStore();
 
 const Login = observer(() => {
+  const [isValidFields, setIsValidFields] = useState(false);
+
+  const validateFields = () => {
+    setIsValidFields(false);
+    if (!validator.isEmail(store.email))
+      return toast.error('Invalid email');
+    if (!validator.isLength(store.password, { min: 8, max: 60 }))
+      return toast.error('Invalid password! Min length: 8, max length: 60')
+    setIsValidFields(true);
+  }
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (
-      validator.isEmail(store.email)
-      && validator.isLength(store.password, { min: 8, max: 60 })
-    ) {
+    validateFields();
+    if (isValidFields) {
       try {
         await store.handleLogin();
       } catch (e) {
@@ -52,7 +61,7 @@ const Login = observer(() => {
 
           <button
             type={'submit'}
-            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2'}
+            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2 hover:bg-light-blue active:bg-light-blue'}
           >
             Login
           </button>

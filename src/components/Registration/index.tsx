@@ -4,22 +4,33 @@ import { AuthRegistrationStore } from '../../stores/authRegistration.ts';
 import { useState } from 'react';
 import validator from 'validator';
 import AuthHeader from '../AuthHeader';
+import toast from 'react-hot-toast';
 
 const store = new AuthRegistrationStore();
 
 const Registration = observer(() => {
   const [isAdminReg, setIsAdminReg] = useState(false);
+  const [isValidFields, setIsValidFields] = useState(false);
+
+  const validateFields = () => {
+    setIsValidFields(false);
+    if (!validator.isEmail(store.email))
+      return toast.error('Invalid email');
+    if (!validator.isMobilePhone(store.phone, 'uk-UA'))
+      return toast.error('Phone required! Format "380*******".')
+    if (!validator.isLength(store.password, { min: 8, max: 60 }))
+      return toast.error('Invalid password! Min length: 8, max length: 60')
+    setIsValidFields(true);
+  }
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (isAdminReg && !store.apiKey) return;
+    if (isAdminReg && !store.apiKey)
+      return toast.error('Api-Key required for admin registration!');
 
-    if (
-      validator.isEmail(store.email)
-      && validator.isMobilePhone(store.phone, 'uk-UA')
-      && validator.isLength(store.password, { min: 8, max: 60 })
-    ) {
+    validateFields();
+    if (isValidFields) {
       try {
         isAdminReg ? await store.handleAdminRegistration() : await store.handleRegistration();
       } catch (e) {
@@ -90,7 +101,7 @@ const Registration = observer(() => {
 
           <button
             type={'submit'}
-            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2'}
+            className={'w-96 h-14 rounded-xl flex items-center justify-center bg-primary text-white text-lg font-bold mb-6 mt-2 hover:bg-light-blue active:bg-light-blue'}
           >
             Registration
           </button>
