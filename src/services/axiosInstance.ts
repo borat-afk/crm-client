@@ -29,6 +29,7 @@ api.interceptors.response.use(
     toast.error(error.message)
     if (error.response?.status === 401) {
       localStorage.removeItem('access_token');
+      window.location.href = '/auth/login';
     }
     return Promise.reject(error);
   }

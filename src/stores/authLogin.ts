@@ -41,6 +41,7 @@ export class AuthLoginStore {
       if (res.data.token) {
         localStorage.setItem('access_token', res.data.token);
         axiosInstance.defaults.headers['Authorization'] = `Bearer ${res.data.token}`
+        window.location.href = '/home';
       }
     } catch (e) {
       return
