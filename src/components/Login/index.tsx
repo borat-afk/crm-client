@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import { AuthLoginStore } from '../../stores/authLogin.ts';
 import { ChangeEvent, FormEvent } from 'react';
 import validator from 'validator';
-import AuthHeader from "../AuthHeader";
+import AuthHeader from '../AuthHeader';
 
 const store = new AuthLoginStore();
 

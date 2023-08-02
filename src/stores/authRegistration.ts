@@ -77,7 +77,7 @@ export class AuthRegistrationStore {
 
       if (this.phone) body.phone = this.phone;
 
-      const res = await api.post('/auth/registration', body, {
+      const res = await api.post('/auth/admin-registration', body, {
         headers: {
           'Api-Key': this.apiKey
         }

@@ -1,14 +1,19 @@
 import { observer } from 'mobx-react';
 import { ChangeEvent, FormEvent } from 'react';
 import { AuthRegistrationStore } from '../../stores/authRegistration.ts';
+import { useState } from 'react';
 import validator from 'validator';
-import AuthHeader from "../AuthHeader";
+import AuthHeader from '../AuthHeader';
 
 const store = new AuthRegistrationStore();
 
 const Registration = observer(() => {
+  const [isAdminReg, setIsAdminReg] = useState(false);
+
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (isAdminReg && !store.apiKey) return;
 
     if (
       validator.isEmail(store.email)
@@ -16,7 +21,7 @@ const Registration = observer(() => {
       && validator.isLength(store.password, { min: 8, max: 60 })
     ) {
       try {
-        await store.handleRegistration();
+        isAdminReg ? await store.handleAdminRegistration() : await store.handleRegistration();
       } catch (e) {
         throw new Error()
       }
@@ -38,6 +43,24 @@ const Registration = observer(() => {
             </h2>
           </div>
           <p className={'text-primary text-sm my-4'}>Welcome, introduce your credentials to begin.</p>
+
+          <div className={'w-96 mx-auto my-2 flex items-center justify-center'}>
+            <button
+              type={'button'}
+              className={isAdminReg ? 'text-primary font-extralight text-lg mx-4 hover:text-light-blue' : 'text-primary font-bold text-lg mx-4'}
+              onClick={() => setIsAdminReg(false)}
+            >
+              User
+            </button>
+            <button
+              type={'button'}
+              className={!isAdminReg ? 'text-primary font-extralight text-lg mx-4 hover:text-light-blue' : 'text-primary font-bold text-lg mx-4'}
+              onClick={() => setIsAdminReg(true)}
+            >
+              Admin
+            </button>
+          </div>
+
           <input
             type={'email'}
             placeholder={'Email'}
@@ -56,6 +79,14 @@ const Registration = observer(() => {
             className={'w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
             onChange={(event: ChangeEvent<HTMLInputElement>) => store.setPassword(event.target.value)}
           />
+          {isAdminReg &&
+            <input
+              type={'text'}
+              placeholder={'Api-Key'}
+              className={'w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4'}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => store.setApiKey(event.target.value)}
+            />
+          }
 
           <button
             type={'submit'}
