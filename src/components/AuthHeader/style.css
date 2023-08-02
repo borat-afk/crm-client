@@ -1,0 +1,15 @@
+.header-wrp {
+    @apply w-full flex justify-between items-center h-16 px-12 bg-white;
+}
+
+.header__logo {
+    @apply bg-app-logo w-[133px] h-[25px] bg-no-repeat;
+}
+
+.header__nav-link {
+    @apply font-extralight text-primary mx-2 text-lg;
+}
+
+.header__nav-link--active {
+    @apply font-bold text-primary mx-2 underline text-lg;
+}

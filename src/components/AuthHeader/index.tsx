@@ -1,14 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import './style.css';
 
 const AuthHeader = () => {
   return (
-    <div className={'w-full flex justify-between items-center h-16 px-12 bg-white'}>
-      <div className={'bg-app-logo w-[133px] h-[25px] bg-no-repeat'}/>
+    <div className={'header-wrp'}>
+      <div className={'header__logo'}/>
 
       <nav className={'flex'}>
         <NavLink
           className={({ isActive }) =>
-            isActive ? 'font-bold text-primary mx-2 underline text-lg' : 'font-extralight text-primary mx-2 text-lg'
+            isActive ? 'header__nav-link--active' : 'header__nav-link'
           }
           to={'/auth/login'}
         >
@@ -16,7 +17,7 @@ const AuthHeader = () => {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            isActive ? 'font-bold text-primary mx-2 underline text-lg' : 'font-extralight text-primary mx-2 text-lg'
+            isActive ? 'header__nav-link--active' : 'header__nav-link'
         }
           to={'/auth/registration'}
         >
