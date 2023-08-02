@@ -6,10 +6,20 @@ const AuthHeader = () => {
       <div className={'bg-app-logo w-[133px] h-[25px] bg-no-repeat'}/>
 
       <nav className={'flex'}>
-        <NavLink to={'/auth/login'}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? 'font-bold text-primary mx-2 underline text-lg' : 'font-extralight text-primary mx-2 text-lg'
+          }
+          to={'/auth/login'}
+        >
           Sign In
         </NavLink>
-        <NavLink to={'/auth/registration'}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? 'font-bold text-primary mx-2 underline text-lg' : 'font-extralight text-primary mx-2 text-lg'
+        }
+          to={'/auth/registration'}
+        >
           Registration
         </NavLink>
       </nav>
