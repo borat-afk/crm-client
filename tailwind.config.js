@@ -9,6 +9,7 @@ export default {
     extend: {
       backgroundImage: {
         'app-bg': "url('/bg_crm.png')",
+        'app-logo': "url('/CRM_agent_logo.png')"
       },
       colors: {
         'white': '#FFFFFF',
@@ -17,6 +18,7 @@ export default {
         'secondary': '#C6D9EE',
         'light-blue': '#567AFB',
         'light': '#C4C4C4',
+        'blue-opacity': 'rgba(86,122,251,0.15)',
         'light-opacity': 'rgba(229,229,229,0.25)'
       }
     },
