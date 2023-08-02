@@ -1,5 +1,7 @@
 import './style.css';
 import { useLocation } from 'react-router-dom';
+import { mdiAccountTie } from '@mdi/js';
+import Icon from '@mdi/react';
 
 const Header = () => {
   const currentRoute = useLocation();
@@ -11,7 +13,18 @@ const Header = () => {
       </h2>
 
       <div className={'header__nav'}>
-        <p>User</p>
+        <div className={'header__user-wrp'}>
+          <div className={'header__user-icon'}>
+            <Icon
+              size={'32px'}
+              path={mdiAccountTie}
+              color={'#567AFB'}
+            />
+          </div>
+          <p className={'header__user-name'}>
+            User
+          </p>
+        </div>
       </div>
     </div>
   )
