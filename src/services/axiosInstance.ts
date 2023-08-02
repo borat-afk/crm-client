@@ -1,4 +1,5 @@
 import axios, { AxiosError } from 'axios';
+import toast from 'react-hot-toast';
 
 const accessToken: string | null = localStorage.getItem('access_token');
 
@@ -25,6 +26,7 @@ api.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
+    toast.error(error.message)
     if (error.response?.status === 401) {
       localStorage.removeItem('access_token');
     }
