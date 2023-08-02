@@ -1,0 +1,7 @@
+.header {
+    @apply w-[calc(100%-240px)] fixed top-0 right-0 flex justify-between items-center h-20 bg-secondary px-12;
+}
+
+.header__path {
+    @apply font-bold text-3xl text-primary;
+}

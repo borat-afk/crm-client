@@ -1,3 +1,7 @@
 .app-layout {
     @apply w-full min-h-screen bg-secondary;
 }
+
+.app-layout__container {
+    @apply ml-[268px] mt-[80px];
+}

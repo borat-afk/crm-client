@@ -1,0 +1,7 @@
+.sidebar {
+    @apply fixed top-0 left-0 w-[240px] bg-secondary-light h-screen;
+}
+
+.sidebar__logo {
+    @apply bg-app-logo;
+}
