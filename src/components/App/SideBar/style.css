@@ -1,7 +1,7 @@
 .sidebar {
-    @apply fixed top-0 left-0 w-[240px] bg-secondary-light h-screen;
+    @apply fixed top-0 left-0 w-[240px] bg-secondary-light h-screen rounded-r-2xl z-20;
 }
 
 .sidebar__logo {
-    @apply bg-app-logo;
+    @apply bg-app-logo w-[133px] h-[25px] m-auto my-8;
 }
