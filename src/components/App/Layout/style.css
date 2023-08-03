@@ -3,5 +3,5 @@
 }
 
 .app-layout__container {
-    @apply ml-[268px] mt-[80px];
+    @apply ml-[312px] mt-[80px] pt-[38px] pr-[72px];
 }

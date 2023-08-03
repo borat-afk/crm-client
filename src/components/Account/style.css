@@ -1,0 +1,17 @@
+.account {}
+
+.account__header {
+    @apply text-primary font-bold text-2xl;
+}
+
+.account__header-des {
+    @apply text-primary font-extralight text-lg;
+}
+
+.account__info-wrp {
+    @apply flex justify-between items-center my-8;
+}
+
+.account__info-edit-wrp {
+    @apply flex justify-center items-center text-green font-light text-xl;
+}
