@@ -1,7 +1,7 @@
 import User from '../../stores/user.ts';
 import './style.css';
 import { mdiFileEditOutline } from '@mdi/js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { observer } from 'mobx-react';
 import Icon from '@mdi/react';
 import { IUser } from '../../types/user.ts';
@@ -15,6 +15,8 @@ const Account = observer(() => {
   const [lastName, setLastName] = useState(user?.lastName);
   const [phone, setPhone] = useState(user?.phone);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isUpdateBtn, setIsUpdateBtn] = useState(false);
+  const [isDisabledForm, setIsDisabledForm] = useState(false);
 
   useEffect(() => {
     setIsLoaded(!!user);
@@ -24,6 +26,20 @@ const Account = observer(() => {
       setFirstName(user?.firstName);
     }
   }, [userStore.user]);
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setIsDisabledForm(true);
+
+    try {
+      await userStore.updateUserData({ firstName, lastName, phone });
+    } catch (e) {
+      throw new Error();
+    }
+
+    setIsDisabledForm(false);
+  }
 
   return (isLoaded &&
     <div className={'account'}>
@@ -49,7 +65,10 @@ const Account = observer(() => {
         </div>
       </div>
 
-      <form className={'account__form'}>
+      <form
+        className={'account__form'}
+        onSubmit={submit}
+      >
         <div className={'app__form-row'}>
           <div className={'app__form-field w-[45%]'}>
             <span className={'app__form-lbl'}>
@@ -59,7 +78,11 @@ const Account = observer(() => {
               className={'app-input !w-full'}
               type={'text'}
               value={firstName || ''}
-              onChange={(event) => setFirstName(event.target.value)}
+              disabled={isDisabledForm}
+              onChange={(event) => {
+                setFirstName(event.target.value);
+                setIsUpdateBtn(true);
+              }}
             />
           </div>
 
@@ -71,7 +94,11 @@ const Account = observer(() => {
               className={'app-input !w-full'}
               type={'text'}
               value={lastName || ''}
-              onChange={(event) => setLastName(event.target.value)}
+              disabled={isDisabledForm}
+              onChange={(event) => {
+                setLastName(event.target.value);
+                setIsUpdateBtn(true);
+              }}
             />
           </div>
         </div>
@@ -85,7 +112,11 @@ const Account = observer(() => {
               className={'app-input !w-full'}
               type={'text'}
               value={phone || ''}
-              onChange={(event) => setPhone(event.target.value)}
+              disabled={isDisabledForm}
+              onChange={(event) => {
+                setPhone(event.target.value);
+                setIsUpdateBtn(true);
+              }}
             />
           </div>
 
@@ -97,6 +128,16 @@ const Account = observer(() => {
               {user?.email}
             </div>
           </div>
+        </div>
+
+        <div className={'account__form-btn-wrp'}>
+          <button
+            type={'submit'}
+            disabled={!isUpdateBtn}
+            className={'account__form-btn'}
+          >
+            Save changes
+          </button>
         </div>
       </form>
     </div>

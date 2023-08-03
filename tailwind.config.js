@@ -19,7 +19,9 @@ export default {
         'light-blue': '#567AFB',
         'secondary-light': '#9aa9d3',
         'light': '#C4C4C4',
+        'gray': '#8d8989',
         'green': '#178f1b',
+        'light-green': '#3fe344',
         'blue-opacity': 'rgba(86,122,251,0.15)',
         'light-opacity': 'rgba(229,229,229,0.25)'
       }

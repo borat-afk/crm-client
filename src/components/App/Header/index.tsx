@@ -24,8 +24,6 @@ const Header = () => {
     fetchUser();
   }, []);
 
-  console.log('HeaderHeaderHeaderHeader')
-
   return (user &&
     <div className={'header'}>
       <h2 className={'header__path'}>

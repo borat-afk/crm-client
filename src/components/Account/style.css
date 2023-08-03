@@ -15,3 +15,11 @@
 .account__info-edit-wrp {
     @apply flex justify-center items-center text-green font-light text-xl;
 }
+
+.account__form-btn-wrp {
+    @apply flex justify-end w-full;
+}
+
+.account__form-btn {
+    @apply px-8 py-4 mr-4 my-4 rounded-[15px] bg-green hover:bg-light-green disabled:bg-gray text-white text-xl font-bold;
+}
