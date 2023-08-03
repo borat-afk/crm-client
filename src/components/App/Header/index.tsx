@@ -1,5 +1,5 @@
 import './style.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { mdiAccountTie } from '@mdi/js';
 import { useEffect, useState } from 'react';
 import User from '../../../stores/user.ts';
@@ -10,6 +10,7 @@ const userStore = User;
 const Header = () => {
   const [user, setUser] = useState(userStore.user);
   const currentRoute = useLocation();
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -23,14 +24,16 @@ const Header = () => {
     fetchUser();
   }, []);
 
-  return (
+  console.log('HeaderHeaderHeaderHeader')
+
+  return (user &&
     <div className={'header'}>
       <h2 className={'header__path'}>
         {currentRoute.pathname}
       </h2>
 
       <div className={'header__nav'}>
-        <div className={'header__user-wrp'}>
+        <NavLink to={'/account/settings'} className={'header__user-wrp'}>
           <div className={'header__user-icon'}>
             <Icon
               size={'32px'}
@@ -44,7 +47,7 @@ const Header = () => {
               ? (user?.firstName + ' ' + user?.lastName)
               : user?.email }
           </p>
-        </div>
+        </NavLink>
       </div>
     </div>
   )

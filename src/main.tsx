@@ -1,12 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 import { Toaster } from 'react-hot-toast';
 import './index.css'
 import router from './router';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <Suspense>
     <RouterProvider router={router} />
     <Toaster
       position={'top-right'}
@@ -14,5 +17,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         duration: 6000,
       }}
     />
-  </React.StrictMode>,
+  </Suspense>
 );

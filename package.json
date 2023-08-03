@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "dist index.html",
     "build": "tsc && vite build",
     "lint": "eslint vite-project --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "tailwind": "npx tailwindcss -i ./src/index.css -o ./dist/index.css --watch",
