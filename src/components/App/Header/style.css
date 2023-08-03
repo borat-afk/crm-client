@@ -9,11 +9,11 @@
 .header__nav {}
 
 .header__user-wrp {
-    @apply flex items-center;
+    @apply flex items-center px-4 py-2 bg-secondary-light rounded-[40px];
 }
 
 .header__user-icon {
-    @apply w-[38px] h-[38px] bg-white flex justify-center items-center rounded-full;
+    @apply w-[38px] h-[38px] bg-white flex justify-center items-center rounded-full text-light-blue;
 }
 
 .header__user-name {

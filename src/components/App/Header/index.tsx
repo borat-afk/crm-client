@@ -35,9 +35,10 @@ const Header = () => {
             <Icon
               size={'32px'}
               path={mdiAccountTie}
-              color={'#567AFB'}
+              color={'currentColor'}
             />
           </div>
+
           <p className={'header__user-name'}>
             { user?.firstName && user?.lastName
               ? (user?.firstName + ' ' + user?.lastName)
