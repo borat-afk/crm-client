@@ -1,10 +1,27 @@
 import './style.css';
 import { useLocation } from 'react-router-dom';
 import { mdiAccountTie } from '@mdi/js';
+import { useEffect, useState } from 'react';
+import User from '../../../stores/user.ts';
 import Icon from '@mdi/react';
 
+const userStore = User;
+
 const Header = () => {
+  const [user, setUser] = useState(userStore.user);
   const currentRoute = useLocation();
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        await userStore.getUserData();
+        setUser(userStore.getUser());
+      } catch (e) {
+        throw new Error();
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <div className={'header'}>
@@ -22,7 +39,9 @@ const Header = () => {
             />
           </div>
           <p className={'header__user-name'}>
-            User
+            { user?.firstName && user?.lastName
+              ? (user?.firstName + ' ' + user?.lastName)
+              : user?.email }
           </p>
         </div>
       </div>

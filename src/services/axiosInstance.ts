@@ -17,7 +17,7 @@ const axiosParams = {
   }
 }
 
-if (accessToken) axiosParams.headers['Authorization'] = accessToken;
+if (accessToken) axiosParams.headers['Authorization'] = `Bearer ${accessToken}`;
 
 const api = axios.create(axiosParams);
 

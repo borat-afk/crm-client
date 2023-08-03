@@ -59,7 +59,7 @@ export class AuthRegistrationStore {
       const res = await api.post('/auth/registration', data);
 
       if (res.data.token) {
-        this.setToken(res.data.token);
+        this.setToken(res.data.token, res.data.userId);
       }
     } catch (e) {
       throw new Error()
@@ -84,15 +84,17 @@ export class AuthRegistrationStore {
       });
 
       if (res.data.token) {
-        this.setToken(res.data.token);
+        this.setToken(res.data.token, res.data.userId);
       }
     } catch (e) {
       throw new Error();
     }
   }
 
-  setToken(token: string) {
+  setToken(token: string, userId: number) {
     localStorage.setItem('access_token', token);
+    localStorage.setItem('user_id', userId.toString());
     axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`
+    window.location.href = '/home';
   }
 }
