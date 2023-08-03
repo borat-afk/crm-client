@@ -3,5 +3,21 @@
 @tailwind utilities;
 
 .app-input {
-    @apply w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg font-bold my-2 border-none outline-none px-4;
+    @apply w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg border-[1px] border-primary my-2 outline-none px-4;
+}
+
+.app-fake-input {
+    @apply w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg border-[1px] border-primary my-2 outline-none px-4;
+}
+
+.app__form-row {
+    @apply flex justify-between items-center my-4 w-full;
+}
+
+.app__form-field {
+    @apply mx-4;
+}
+
+.app__form-lbl {
+    @apply text-primary pl-4 text-xl;
 }
