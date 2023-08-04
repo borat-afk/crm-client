@@ -40,15 +40,10 @@ class User {
         if (!userId) return;
 
         try {
-            const payload = {};
-
-            Object.entries(fields).forEach(item => {
-                if (item[1]) payload[item[0]] = item[1];
-            });
-
-            // const payload = args.reduce((total, item) => {
-            //     if (item[1]) total[item[0]] = item[1];
-            // }, {})
+            const payload = Object.entries(fields).reduce((total, item) => {
+                if (item[1]) total[item[0]] = item[1];
+                return total;
+            }, {})
 
             await api.put(`/user/${userId}`, {...payload});
         } catch (e) {
