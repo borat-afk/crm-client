@@ -21,3 +21,15 @@
 .app__form-lbl {
     @apply text-primary pl-4 text-xl;
 }
+
+.app__table {
+    @apply bg-white border-2 border-primary-black rounded-2xl p-4;
+}
+
+.app__table .rc-table-content table .rc-table-thead {
+    /*@apply border-b-2 border-primary-black;*/
+}
+
+/*.app__table .rc-table-content table .rc-table-thead tr {*/
+/*    @apply border-b-2 border-primary-black  text-center;*/
+/*}*/
