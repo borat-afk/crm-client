@@ -40,10 +40,12 @@ class User {
         if (!userId) return;
 
         try {
+            const payloadObj: Record<string, null> = {};
+
             const payload = Object.entries(fields).reduce((total, item) => {
                 if (item[1]) total[item[0]] = item[1];
                 return total;
-            }, {})
+            }, payloadObj)
 
             await api.put(`/user/${userId}`, {...payload});
         } catch (e) {
