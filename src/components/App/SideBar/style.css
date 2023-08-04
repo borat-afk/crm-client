@@ -1,5 +1,5 @@
 .sidebar {
-    @apply fixed top-0 left-0 w-[240px] bg-secondary-light h-screen rounded-r-2xl z-20;
+    @apply fixed top-0 left-0 w-[240px] bg-primary-black h-screen rounded-r-2xl z-20;
 }
 
 .sidebar__logo {
