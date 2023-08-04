@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { RoutesEnum } from '../enums/routes.enum.ts';
 import Layout from '../components/App/Layout';
 import AuthGuard from './AuthGuard';
 import Login from '../components/Login';
@@ -20,11 +21,11 @@ const router = createBrowserRouter([
     element: <Layout><AuthGuard /></Layout>,
     children: [
       {
-        path: '/home',
+        path: RoutesEnum.Home,
         element: <App />
       },
       {
-        path: '/account/settings',
+        path: RoutesEnum.AccountSettings,
         element: <Account />
       }
     ]

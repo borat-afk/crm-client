@@ -2,13 +2,16 @@ import './style.css';
 import { useLocation, NavLink } from 'react-router-dom';
 import { mdiAccountTie } from '@mdi/js';
 import { useEffect, useState } from 'react';
+import { routeFilter } from '../../../filters/route.filter.ts';
 import User from '../../../stores/user.ts';
 import Icon from '@mdi/react';
+import { IUser } from '../../../types/user.ts';
 
 const userStore = User;
 
 const Header = () => {
-  const [user, setUser] = useState(userStore.user);
+  const [user, setUser] = useState<IUser | null>(userStore.user);
+  const [pathName, setPathName] = useState<string | undefined>('');
   const currentRoute = useLocation();
 
   useEffect(() => {
@@ -24,10 +27,14 @@ const Header = () => {
     fetchUser();
   }, []);
 
+  useEffect(() => {
+    setPathName(routeFilter(currentRoute.pathname));
+  }, [currentRoute.pathname]);
+
   return (user &&
     <div className={'header'}>
       <h2 className={'header__path'}>
-        {currentRoute.pathname}
+        {pathName}
       </h2>
 
       <div className={'header__nav'}>

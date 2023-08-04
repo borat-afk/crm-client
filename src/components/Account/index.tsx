@@ -1,22 +1,22 @@
-import User from '../../stores/user.ts';
-import './style.css';
 import { mdiFileEditOutline } from '@mdi/js';
 import { useState, useEffect, FormEvent } from 'react';
 import { observer } from 'mobx-react';
-import Icon from '@mdi/react';
 import { IUser } from '../../types/user.ts';
+import Icon from '@mdi/react';
+import User from '../../stores/user.ts';
+import './style.css';
 
 const userStore = User;
 
 const Account = observer(() => {
   const user: IUser | null = userStore.getUser();
 
-  const [firstName, setFirstName] = useState(user?.firstName);
-  const [lastName, setLastName] = useState(user?.lastName);
-  const [phone, setPhone] = useState(user?.phone);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isUpdateBtn, setIsUpdateBtn] = useState(false);
-  const [isDisabledForm, setIsDisabledForm] = useState(false);
+  const [firstName, setFirstName] = useState<string | undefined>('');
+  const [lastName, setLastName] = useState<string | undefined>('');
+  const [phone, setPhone] = useState<string | undefined>('');
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [isUpdateBtn, setIsUpdateBtn] = useState<boolean>(false);
+  const [isDisabledForm, setIsDisabledForm] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoaded(!!user);
