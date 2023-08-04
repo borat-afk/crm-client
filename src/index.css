@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .app-input {
-    @apply w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg border-[1px] border-primary my-2 outline-none px-4;
+    @apply w-96 h-12 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg border-[1px] border-primary my-2 outline-none px-4;
 }
 
 .app-fake-input {
-    @apply w-96 h-14 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg border-[1px] border-primary my-2 outline-none px-4;
+    @apply w-96 h-12 rounded-xl flex items-center justify-center bg-light-opacity text-primary text-lg border-[1px] border-primary my-2 outline-none px-4;
 }
 
 .app__form-row {

@@ -2,6 +2,7 @@ import { mdiFileEditOutline } from '@mdi/js';
 import { useState, useEffect, FormEvent } from 'react';
 import { observer } from 'mobx-react';
 import { IUser } from '../../types/user.ts';
+import { userStatusFilter } from '../../filters/user-status.filter.ts';
 import Icon from '@mdi/react';
 import User from '../../stores/user.ts';
 import './style.css';
@@ -14,6 +15,7 @@ const Account = observer(() => {
   const [firstName, setFirstName] = useState<string | undefined>('');
   const [lastName, setLastName] = useState<string | undefined>('');
   const [phone, setPhone] = useState<string | undefined>('');
+  const [status, setStatus] = useState<{ title: string, icon: string } | null>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isUpdateBtn, setIsUpdateBtn] = useState<boolean>(false);
   const [isDisabledForm, setIsDisabledForm] = useState<boolean>(false);
@@ -24,6 +26,7 @@ const Account = observer(() => {
       setPhone(user?.phone);
       setLastName(user?.lastName);
       setFirstName(user?.firstName);
+      setStatus(userStatusFilter(user?.status));
     }
   }, [userStore.user]);
 
@@ -126,6 +129,34 @@ const Account = observer(() => {
             </span>
             <div className={'app-fake-input !w-full'}>
               {user?.email}
+            </div>
+          </div>
+        </div>
+
+        <div className={'app__form-row'}>
+          <div className={'app__form-field w-[45%]'}>
+            <span className={'app__form-lbl'}>
+              Salary
+            </span>
+            <div className={'app-fake-input !w-full'}>
+              {user?.salary ? `${user.salary}$` : '0.00$'}
+            </div>
+          </div>
+
+          <div className={'app__form-field w-[45%]'}>
+            <span className={'app__form-lbl'}>
+              Status
+            </span>
+            <div className={'app-fake-input !w-full'}>
+              <p className={'mr-2'}>
+                {status?.title}
+              </p>
+              {status?.icon &&
+                <Icon
+                  size={'32px'}
+                  path={status?.icon}
+                  color={'currentColor'}
+                />}
             </div>
           </div>
         </div>
