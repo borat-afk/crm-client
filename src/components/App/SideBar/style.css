@@ -5,3 +5,15 @@
 .sidebar__logo {
     @apply bg-app-logo w-[133px] h-[25px] m-auto my-8;
 }
+
+.sidebar__nav-wrp {
+    @apply my-12 px-8 text-lg text-light;
+}
+
+.sidebar__nav-link {
+    @apply flex items-center my-2 text-xl text-light-blue font-light hover:text-secondary-light;
+}
+
+.sidebar__nav-link--active {
+    @apply flex items-center my-2 text-xl text-light font-light;
+}

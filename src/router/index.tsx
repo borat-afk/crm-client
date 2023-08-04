@@ -6,6 +6,7 @@ import Login from '../components/Login';
 import App from '../App.tsx';
 import Registration from '../components/Registration';
 import Account from '../components/Account';
+import Users from "../components/Users";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: RoutesEnum.AccountSettings,
         element: <Account />
+      },
+      {
+        path: RoutesEnum.Users,
+        element: <Users />
       }
     ]
   }

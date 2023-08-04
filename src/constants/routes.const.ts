@@ -1,4 +1,4 @@
-import {RoutesEnum} from '../enums/routes.enum.ts';
+import { RoutesEnum } from '../enums/routes.enum.ts';
 
 interface IRoute {
   path: RoutesEnum,
@@ -13,5 +13,9 @@ export const routesConst: IRoute[] = [
   {
     path: RoutesEnum.AccountSettings,
     title: 'Account Settings'
+  },
+  {
+    path: RoutesEnum.Users,
+    title: 'Users'
   }
 ]
