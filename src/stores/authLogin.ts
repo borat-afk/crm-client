@@ -2,7 +2,7 @@ import { makeObservable, observable, action } from 'mobx';
 import api from '../services/axiosInstance.ts';
 import axiosInstance from "../services/axiosInstance.ts";
 
-export class AuthLoginStore {
+class AuthLoginStore {
   email: string = '';
   phone: string = '';
   password: string = '';
@@ -27,6 +27,12 @@ export class AuthLoginStore {
     this.password = value;
   }
 
+  handleLogout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_id');
+    window.location.href = '/auth/login';
+  }
+
   async handleLogin() {
     if (!this.email || !this.password) return;
 
@@ -49,3 +55,5 @@ export class AuthLoginStore {
     }
   }
 }
+
+export default new AuthLoginStore();

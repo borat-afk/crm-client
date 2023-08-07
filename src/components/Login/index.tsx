@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react';
-import { AuthLoginStore } from '../../stores/authLogin.ts';
+import AuthLoginStore from '../../stores/authLogin.ts';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import validator from 'validator';
 import AuthHeader from '../AuthHeader';
 import toast from 'react-hot-toast';
 import './style.css';
 
-const store = new AuthLoginStore();
+const store = AuthLoginStore;
 
 const Login = observer(() => {
   const [isValidFields, setIsValidFields] = useState(false);
