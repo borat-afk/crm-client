@@ -5,6 +5,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { DateTime } from 'luxon';
 import { userStatusFilter } from '../../filters/user-status.filter.ts';
 import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import { pageCountCalculate } from '../../helpers/page-count.calculate.ts';
+import { paginationPerPageConst } from '../../constants/pagination-per-page.const.ts';
+import { pageSkipCalculate } from '../../helpers/page-skip.calculate.ts';
 import Select from 'react-select';
 import UsersStore from '../../stores/users.ts';
 import ResponsivePagination from 'react-responsive-pagination';
@@ -12,15 +15,6 @@ import 'react-responsive-pagination/themes/bootstrap.css';
 import './style.css';
 
 const usersStore = UsersStore;
-
-const paginationPerPageOptions = [
-  { value: 5, label: '5' },
-  { value: 10, label: '10' },
-  { value: 15, label: '15' },
-  { value: 20, label: '20' },
-  { value: 25, label: '25' },
-  { value: 50, label: '50' },
-]
 
 const Users = observer(() => {
   const [users, setUsers] = useState<IUser[] | null | undefined>(null);
@@ -39,6 +33,8 @@ const Users = observer(() => {
   useEffect(() => {
     (async () => {
       try {
+        usersStore.setPerPage(perPage.value);
+        if (page > 1) usersStore.setSkip(pageSkipCalculate(perPage.value, page));
         await usersStore.fetchUsers();
         const tableData: IUser[] | undefined = usersStore.getUsers()?.map(item => {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -54,6 +50,12 @@ const Users = observer(() => {
         });
         setUsers(tableData);
         setRowCount(usersStore.getTotal());
+        setPageCount(
+          pageCountCalculate(
+            usersStore.getTotal(),
+            perPage.value
+          )
+        );
       } catch (e) {
         throw new Error();
       }
@@ -78,7 +80,7 @@ const Users = observer(() => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             onChange={(newPerPage) => setPerPage(newPerPage)}
-            options={paginationPerPageOptions}
+            options={paginationPerPageConst}
             value={perPage}
           />
         </div>
