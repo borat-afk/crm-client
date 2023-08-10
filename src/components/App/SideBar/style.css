@@ -11,11 +11,11 @@
 }
 
 .sidebar__nav-link {
-    @apply flex items-center my-2 text-xl text-light-blue font-light hover:text-secondary-light;
+    @apply flex items-center my-4 text-xl text-light-blue font-light hover:text-secondary-light;
 }
 
 .sidebar__nav-link--active {
-    @apply flex items-center my-2 text-xl text-light font-light;
+    @apply flex items-center my-4 text-xl text-light font-light;
 }
 
 .sidebar__bottom-section {

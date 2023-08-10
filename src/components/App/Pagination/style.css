@@ -1,0 +1,9 @@
+.pagination {}
+
+.pagination__per-page {
+    @apply flex items-center mr-4;
+}
+
+.pagination__per-page-lbl {
+    @apply text-primary font-light text-lg mr-2;
+}

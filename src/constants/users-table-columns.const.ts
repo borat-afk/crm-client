@@ -25,7 +25,7 @@ export const usersTableColumnsConst = [
   },
   {
     header: 'Position',
-    accessorKey: 'position',
+    accessorKey: 'position.title',
   },
   {
     header: 'Status',
@@ -39,4 +39,4 @@ export const usersTableColumnsConst = [
     header: 'Updated',
     accessorKey: 'updateDate',
   },
-]
+];

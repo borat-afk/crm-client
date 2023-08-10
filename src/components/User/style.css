@@ -1,25 +1,25 @@
-.account {}
+.user {}
 
-.account__header {
+.user__header {
     @apply text-primary font-bold text-2xl;
 }
 
-.account__header-des {
+.user__header-des {
     @apply text-primary font-extralight text-lg;
 }
 
-.account__info-wrp {
+.user__info-wrp {
     @apply flex justify-between items-center my-8;
 }
 
-.account__info-edit-wrp {
+.user__info-edit-wrp {
     @apply flex justify-center items-center text-green font-light text-xl;
 }
 
-.account__form-btn-wrp {
+.user__form-btn-wrp {
     @apply flex justify-end w-full;
 }
 
-.account__form-btn {
+.user__form-btn {
     @apply px-8 py-4 mr-4 my-4 rounded-[15px] bg-green hover:bg-light-green disabled:bg-gray text-white text-xl font-bold;
 }

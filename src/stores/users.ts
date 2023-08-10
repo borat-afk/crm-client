@@ -6,7 +6,7 @@ class UsersStore {
   users: IUser[] | null = null;
   total: number = 0;
   perPage: number | null = null;
-  skip: number | null = null;
+  skip: number = 0;
 
   constructor() {
     makeObservable(this, {
@@ -25,7 +25,7 @@ class UsersStore {
   }
 
   setSkip(newSkip: number) {
-    this.skip = this.perPage? newSkip * this.perPage : null;
+    this.skip = newSkip;
   }
 
   setUsers(usersList: IUser[]) {
@@ -46,9 +46,7 @@ class UsersStore {
 
   async fetchUsers() {
     try {
-      // limit skip
-      const paginationQuery = `?limit=${this.perPage}&skip=${this.skip}`
-      const res = await api.get(`/user${this.perPage && this.skip ? paginationQuery : '' }`);
+      const res = await api.get(`/user?limit=${this.perPage}${this.skip ? '&skip=' + this.skip : ''}`);
       this.setUsers(res?.data.data);
       this.setTotal(res?.data.total);
     } catch (e) {

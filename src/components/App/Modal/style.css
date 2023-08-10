@@ -1,0 +1,35 @@
+.modal {
+    @apply bg-white p-20 rounded-md shadow-md;
+}
+
+.modal-overlay {
+    @apply fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center opacity-0 invisible transition-opacity ease-out duration-300;
+}
+
+.modal-overlay.open {
+    @apply opacity-100 visible;
+}
+
+.modal {
+    @apply bg-white p-8 rounded-md shadow-md opacity-0 transform scale-[0.8] transition-opacity ease-out duration-300;
+}
+
+.modal.open {
+    @apply opacity-100 scale-100;
+}
+
+.modal__header-wrp {
+    @apply flex justify-end w-full items-center;
+}
+
+.modal__header {
+    @apply text-lg text-primary font-bold mr-[200px];
+}
+
+.modal-close {
+    @apply text-red hover:text-light-red;
+}
+
+.modal__content {
+    @apply py-4;
+}

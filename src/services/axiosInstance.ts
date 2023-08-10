@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
+import { RoutesEnum } from '../enums/routes.enum.ts';
 
 const accessToken: string | null = localStorage.getItem('access_token');
 
@@ -27,6 +28,9 @@ api.interceptors.response.use(
   },
   (error: AxiosError) => {
     toast.error(error.message)
+    if (error.response?.status === 403) {
+      window.location.href = RoutesEnum.Forbidden;
+    }
     if (error.response?.status === 401) {
       localStorage.removeItem('access_token');
       window.location.href = '/auth/login';

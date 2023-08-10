@@ -17,5 +17,25 @@ export const routesConst: IRoute[] = [
   {
     path: RoutesEnum.Users,
     title: 'Users'
+  },
+  {
+    path: RoutesEnum.User,
+    title: 'User'
+  },
+  {
+    path: RoutesEnum.Positions,
+    title: 'Positions'
+  },
+  {
+    path: RoutesEnum.Skills,
+    title: 'Skills'
+  },
+  {
+    path: RoutesEnum.Permissions,
+    title: 'Permissions'
+  },
+  {
+    path: RoutesEnum.Forbidden,
+    title: 'Access denied'
   }
 ]

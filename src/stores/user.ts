@@ -1,9 +1,9 @@
 import { action, makeObservable, observable } from 'mobx';
 import { IUser } from '../types/user.ts';
-import { IUpdateUserArg } from '../types/updateUserArg.ts';
+import { updatableUserFields } from '../constants/updatable-user-fields.ts';
 import api from '../services/axiosInstance.ts';
 
-class User {
+class UserStore {
     user: IUser | null = null;
 
     constructor() {
@@ -21,9 +21,7 @@ class User {
         return this.user;
     }
 
-    async getUserData() {
-        const userId = localStorage.getItem('user_id');
-
+    async getUserData(userId: number) {
         if (!userId) return;
 
         try {
@@ -34,24 +32,54 @@ class User {
         }
     }
 
-    async updateUserData(fields: IUpdateUserArg) {
+    async updateUserSkills(skills: number[], anyUserId?: number) {
         const userId = localStorage.getItem('user_id');
 
         if (!userId) return;
 
         try {
-            const payloadObj: Record<string, null> = {};
+            await api.patch(`/user/skills/${anyUserId ? anyUserId : userId}`, { skills });
+        } catch (e) {
+            throw new Error();
+        }
+    }
 
-            const payload = Object.entries(fields).reduce((total, item) => {
-                if (item[1]) total[item[0]] = item[1];
-                return total;
-            }, payloadObj)
+    async updatePermissions(permissions: number[], anyUserId?: number) {
+        const userId = localStorage.getItem('user_id');
 
-            await api.put(`/user/${userId}`, {...payload});
+        if (!userId) return;
+
+        try {
+            await api.patch(`/user/permissions/${anyUserId ? anyUserId : userId}`, { permissions });
+        } catch (e) {
+            throw new Error();
+        }
+    }
+
+    async updateUserStatus(statusId: number, anyUserId?:number) {
+        try {
+            const userId = localStorage.getItem('user_id');
+            await api.patch(`/user/status/${anyUserId ? anyUserId : userId}`, { newStatus: statusId })
+        } catch (e) {
+            throw new Error();
+        }
+    }
+
+    async updateUserData(userData: IUser, anyUserId?: number) {
+        const userId = localStorage.getItem('user_id');
+
+        if (!userId) return;
+
+        try {
+            const payload: Record<string, any> = {};
+            updatableUserFields.forEach(field => {
+                payload[field as keyof IUser] = userData[field as keyof IUser]
+            })
+            await api.put(`/user/${anyUserId? anyUserId : userId}`, {...payload});
         } catch (e) {
             throw new Error();
         }
     }
 }
 
-export default new User();
+export default new UserStore();

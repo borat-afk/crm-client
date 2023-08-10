@@ -9,7 +9,8 @@ export default {
     extend: {
       backgroundImage: {
         'app-bg': "url('/bg_crm.png')",
-        'app-logo': "url('/CRM_agent_logo.png')"
+        'app-logo': "url('/CRM_agent_logo.png')",
+        'app-forbidden': "url('403ForbiddenError.jpg')"
       },
       colors: {
         'white': '#FFFFFF',
@@ -23,6 +24,8 @@ export default {
         'gray': '#8d8989',
         'green': '#178f1b',
         'light-green': '#3fe344',
+        'red': '#ab1515',
+        'light-red': '#ff2121',
         'blue-opacity': 'rgba(86,122,251,0.15)',
         'light-opacity': 'rgba(229,229,229,0.25)'
       }

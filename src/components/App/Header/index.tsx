@@ -3,11 +3,11 @@ import { useLocation, NavLink } from 'react-router-dom';
 import { mdiAccountTie } from '@mdi/js';
 import { useEffect, useState } from 'react';
 import { routeFilter } from '../../../filters/route.filter.ts';
-import User from '../../../stores/user.ts';
+import UserStore from '../../../stores/user.ts';
 import Icon from '@mdi/react';
 import { IUser } from '../../../types/user.ts';
 
-const userStore = User;
+const userStore = UserStore;
 
 const Header = () => {
   const [user, setUser] = useState<IUser | null>(userStore.user);
@@ -17,7 +17,8 @@ const Header = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        await userStore.getUserData();
+        const userId = localStorage.getItem('user_id');
+        if (userId) await userStore.getUserData(+userId);
         setUser(userStore.getUser());
       } catch (e) {
         throw new Error();

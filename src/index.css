@@ -26,10 +26,10 @@
     @apply bg-white border-2 border-primary-black rounded-2xl p-4;
 }
 
-.app__table .rc-table-content table .rc-table-thead {
-    /*@apply border-b-2 border-primary-black;*/
+.app__modal-btn-wrp {
+    @apply w-full flex justify-end mt-4;
 }
 
-/*.app__table .rc-table-content table .rc-table-thead tr {*/
-/*    @apply border-b-2 border-primary-black  text-center;*/
-/*}*/
+.app__modal-confirm-btn {
+    @apply py-2 px-4 flex items-center justify-center rounded-2xl uppercase text-white bg-green hover:bg-light-green disabled:bg-gray disabled:text-black;
+}

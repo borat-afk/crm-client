@@ -6,7 +6,12 @@ import Login from '../components/Login';
 import App from '../App.tsx';
 import Registration from '../components/Registration';
 import Account from '../components/Account';
-import Users from "../components/Users";
+import Users from '../components/Users';
+import UserDetails from '../components/UserDetails';
+import Positions from '../components/Positions';
+import Skills from '../components/Skills';
+import Permission from '../components/Permission';
+import Forbidden from '../components/Forbidden';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +37,26 @@ const router = createBrowserRouter([
       {
         path: RoutesEnum.Users,
         element: <Users />
+      },
+      {
+        path: RoutesEnum.User,
+        element: <UserDetails />
+      },
+      {
+        path: RoutesEnum.Positions,
+        element: <Positions />
+      },
+      {
+        path: RoutesEnum.Skills,
+        element: <Skills />
+      },
+      {
+        path: RoutesEnum.Permissions,
+        element: <Permission />
+      },
+      {
+        path: RoutesEnum.Forbidden,
+        element: <Forbidden />
       }
     ]
   }
