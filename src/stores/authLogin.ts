@@ -1,6 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 import api from '../services/axiosInstance.ts';
 import axiosInstance from "../services/axiosInstance.ts";
+import {RoutesEnum} from "../enums/routes.enum.ts";
 
 class AuthLoginStore {
   email: string = '';
@@ -48,7 +49,7 @@ class AuthLoginStore {
         localStorage.setItem('access_token', res.data.token);
         localStorage.setItem('user_id', res.data.userId.toString());
         axiosInstance.defaults.headers['Authorization'] = `Bearer ${res.data.token}`
-        window.location.href = '/home';
+        window.location.href = RoutesEnum.Users;
       }
     } catch (e) {
       return

@@ -33,40 +33,48 @@ class UserStore {
     }
 
     async updateUserSkills(skills: number[], anyUserId?: number) {
-        const userId = localStorage.getItem('user_id');
+        const userId = anyUserId || localStorage.getItem('user_id');
 
         if (!userId) return;
 
         try {
-            await api.patch(`/user/skills/${anyUserId ? anyUserId : userId}`, { skills });
+            await api.patch(`/user/skills/${userId}`, { skills });
         } catch (e) {
             throw new Error();
         }
     }
 
     async updatePermissions(permissions: number[], anyUserId?: number) {
-        const userId = localStorage.getItem('user_id');
-
+        const userId = anyUserId || localStorage.getItem('user_id');
         if (!userId) return;
 
         try {
-            await api.patch(`/user/permissions/${anyUserId ? anyUserId : userId}`, { permissions });
+            await api.patch(`/user/permissions/${userId}`, { permissions });
         } catch (e) {
             throw new Error();
         }
     }
 
-    async updateUserStatus(statusId: number, anyUserId?:number) {
+    async updateUserStatus(statusId: number, anyUserId?: number) {
         try {
-            const userId = localStorage.getItem('user_id');
-            await api.patch(`/user/status/${anyUserId ? anyUserId : userId}`, { newStatus: statusId })
+            const userId = anyUserId || localStorage.getItem('user_id');
+            await api.patch(`/user/status/${userId}`, { newStatus: statusId })
+        } catch (e) {
+            throw new Error();
+        }
+    }
+
+    async setStartWorkDate(date: Date, anyUserId?: number) {
+        try {
+            const userId = anyUserId || localStorage.getItem('user_id');
+            await api.post(`/user/work-date/${userId}`, { date });
         } catch (e) {
             throw new Error();
         }
     }
 
     async updateUserData(userData: IUser, anyUserId?: number) {
-        const userId = localStorage.getItem('user_id');
+        const userId = anyUserId || localStorage.getItem('user_id');
 
         if (!userId) return;
 
@@ -75,7 +83,7 @@ class UserStore {
             updatableUserFields.forEach(field => {
                 payload[field as keyof IUser] = userData[field as keyof IUser]
             })
-            await api.put(`/user/${anyUserId? anyUserId : userId}`, {...payload});
+            await api.put(`/user/${userId}`, {...payload});
         } catch (e) {
             throw new Error();
         }

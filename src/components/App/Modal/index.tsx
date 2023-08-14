@@ -8,7 +8,7 @@ type IModalParams = {
   isOpen: boolean,
   onClose: () => void,
   header: string,
-  children: ReactNode
+  children: ReactNode | JSX.Element
 }
 
 const Modal: FC<IModalParams> = ({ isOpen, onClose, header, children }) => {

@@ -13,6 +13,9 @@ export interface IUser {
   skills?: ISkill[];
   salary?: number;
   status: UserStatus;
+  vacationDays: number;
+  sickLeaveDays: number;
+  startWorkDate?: Date;
   isReLogin?: boolean;
   permissions?: IPermission[];
   createDate: Date;

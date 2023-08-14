@@ -1,6 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 import api from '../services/axiosInstance.ts';
 import axiosInstance from "../services/axiosInstance.ts";
+import {RoutesEnum} from "../enums/routes.enum.ts";
 
 interface IReqPayload {
   email: string,
@@ -95,6 +96,6 @@ export class AuthRegistrationStore {
     localStorage.setItem('access_token', token);
     localStorage.setItem('user_id', userId.toString());
     axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`
-    window.location.href = '/home';
+    window.location.href = RoutesEnum.Users;
   }
 }

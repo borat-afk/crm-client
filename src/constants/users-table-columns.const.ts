@@ -32,6 +32,14 @@ export const usersTableColumnsConst = [
     accessorKey: 'status',
   },
   {
+    header: 'Vacation days',
+    accessorKey: 'vacationDays',
+  },
+  {
+    header: 'Sick leave days',
+    accessorKey: 'sickLeaveDays',
+  },
+  {
     header: 'Registered',
     accessorKey: 'createDate',
   },
