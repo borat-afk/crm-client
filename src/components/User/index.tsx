@@ -4,12 +4,16 @@ import {
   mdiServerSecurity,
   mdiBeach,
   mdiWheelchairAccessibility,
+  mdiContentCopy,
 } from '@mdi/js';
 import {FC, FormEvent, useEffect, useState} from 'react';
 import {observer} from 'mobx-react';
 import {IUser} from '../../types/user.ts';
 import {userStatusFilter} from '../../filters/user-status.filter.ts';
 import {UserModalType} from '../../enums/user-modal-type.enum.ts';
+import { stringCut } from '../../helpers/string-cut.ts';
+import { copyText } from '../../helpers/copy-text.ts';
+import { userWorkStatusFilter } from '../../filters/user-work-status.filter.ts';
 import ModalWindows from './ModalWindow';
 import Icon from '@mdi/react';
 import UserStore from '../../stores/user.ts';
@@ -79,7 +83,18 @@ const User: FC<{ userId: number }> = observer(({ userId }) => {
         User information
       </h2>
       <span className={'user__header-des'}>
-        update user information
+        { userData.workStatus
+          ? <div className={'flex items-center'}>
+            <Icon
+              size={'24px'}
+              color={'currentColor'}
+              path={userWorkStatusFilter(userData.workStatus).icon}
+            />
+            <p className={'ml-2'}>
+              { userWorkStatusFilter(userData.workStatus).title }
+            </p>
+          </div>
+          : 'update user information' }
       </span>
 
       <div className={'user__info-wrp'}>
@@ -158,6 +173,55 @@ const User: FC<{ userId: number }> = observer(({ userId }) => {
             </span>
             <div className={'app-fake-input !w-full'}>
               {userData.email}
+            </div>
+          </div>
+        </div>
+
+        <div className={'app__form-row'}>
+          <div className={'app__form-field w-[45%]'}>
+            <span className={'app__form-lbl'}>
+              Telegram username
+            </span>
+            <div className={'app-fake-input !w-full'}>{
+              userData.telegramUsername &&
+              <button
+                className={'ml-2 hover:text-green flex items-center'}
+                type={'button'}
+                onClick={() => userData.telegramUsername && copyText(userData.telegramUsername)}
+              >
+                <p className={'mr-2'}>
+                  {userData.telegramUsername}
+                </p>
+
+                <Icon
+                  size={'24px'}
+                  color={'currentColor'}
+                  path={mdiContentCopy}
+                />
+              </button>}
+            </div>
+          </div>
+
+          <div className={'app__form-field w-[45%]'}>
+            <span className={'app__form-lbl'}>
+              Telegram token
+            </span>
+            <div className={'app-fake-input !w-full'}>
+              <button
+                className={'ml-2 hover:text-green flex items-center'}
+                type={'button'}
+                onClick={() => copyText(userData.telegramToken)}
+              >
+                <p className={'mr-2'}>
+                  {stringCut(userData.telegramToken, 34)}
+                </p>
+
+                <Icon
+                  size={'24px'}
+                  color={'currentColor'}
+                  path={mdiContentCopy}
+                />
+              </button>
             </div>
           </div>
         </div>

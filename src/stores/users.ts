@@ -46,7 +46,7 @@ class UsersStore {
 
   async fetchUsers() {
     try {
-      const res = await api.get(`/user?limit=${this.perPage}${this.skip ? '&skip=' + this.skip : ''}`);
+      const res = await api.get(`/user${this.perPage ? '?limit=' + this.perPage : ''}${this.skip ? '&skip=' + this.skip : ''}`);
       this.setUsers(res?.data.data);
       this.setTotal(res?.data.total);
     } catch (e) {

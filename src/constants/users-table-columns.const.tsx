@@ -1,7 +1,17 @@
+import { userWorkStatusFilter } from '../filters/user-work-status.filter.ts';
+
 export const usersTableColumnsConst = [
   {
     header: 'ID',
     accessorKey: 'id',
+  },
+  {
+    header: 'Work status',
+    accessorKey: 'workStatus',
+    Cell: ({ cell }) => {
+      const filteredCell = userWorkStatusFilter(cell.getValue());
+      return <span>{ filteredCell ? filteredCell.title : cell.getValue() }</span>
+    },
   },
   {
     header: 'First Name',

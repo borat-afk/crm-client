@@ -11,6 +11,7 @@ import Positions from '../components/Positions';
 import Skills from '../components/Skills';
 import Permission from '../components/Permission';
 import Forbidden from '../components/Forbidden';
+import Visitlog from '../components/Visitlog';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: RoutesEnum.Permissions,
         element: <Permission />
+      },
+      {
+        path: RoutesEnum.Visitlog,
+        element: <Visitlog />
       },
       {
         path: RoutesEnum.Forbidden,

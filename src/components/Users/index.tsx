@@ -1,4 +1,4 @@
-import { usersTableColumnsConst } from '../../constants/users-table-columns.const.ts';
+import { usersTableColumnsConst } from '../../constants/users-table-columns.const.tsx';
 import { observer } from 'mobx-react-lite';
 import { IUser } from "../../types/user.ts";
 import { FC, useEffect, useMemo, useState } from 'react';

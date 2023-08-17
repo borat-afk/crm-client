@@ -7,10 +7,6 @@ interface IRoute {
 
 export const routesConst: IRoute[] = [
   {
-    path: RoutesEnum.Home,
-    title: 'Home'
-  },
-  {
     path: RoutesEnum.AccountSettings,
     title: 'Account Settings'
   },
@@ -33,6 +29,10 @@ export const routesConst: IRoute[] = [
   {
     path: RoutesEnum.Permissions,
     title: 'Permissions'
+  },
+  {
+    path: RoutesEnum.Visitlog,
+    title: 'Visitlog'
   },
   {
     path: RoutesEnum.Forbidden,

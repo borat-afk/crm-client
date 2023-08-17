@@ -7,7 +7,8 @@ import {
   mdiLogout,
   mdiFormatLineWeight,
   mdiAppleKeyboardCommand,
-  mdiServerSecurity
+  mdiServerSecurity,
+  mdiOrderBoolAscendingVariant
 } from '@mdi/js';
 import AuthLogin from '../../../stores/authLogin.ts';
 import Icon from "@mdi/react";
@@ -79,6 +80,21 @@ const SideBar = () => {
             />
             <p className={'ml-2'}>
               {routeFilter(RoutesEnum.Permissions)}
+            </p>
+          </NavLink>
+          <NavLink
+            to={RoutesEnum.Visitlog}
+            className={({ isActive }) =>
+              isActive ? 'sidebar__nav-link--active' : 'sidebar__nav-link'
+            }
+          >
+            <Icon
+              size={'24px'}
+              color={'currentColor'}
+              path={mdiOrderBoolAscendingVariant}
+            />
+            <p className={'ml-2'}>
+              {routeFilter(RoutesEnum.Visitlog)}
             </p>
           </NavLink>
         </nav>

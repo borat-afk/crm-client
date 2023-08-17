@@ -5,5 +5,6 @@ export enum RoutesEnum {
   Positions = '/positions',
   Skills = '/skills',
   Permissions = '/permissions',
+  Visitlog = '/visitlog',
   Forbidden = '/access-denied'
 }
